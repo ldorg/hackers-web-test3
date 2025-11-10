@@ -6,6 +6,10 @@ on:
     branches:
       - "**"
   workflow_dispatch:
+permissions:
+  scm-token-own: read
+  scm-token-org: read
+  id-token: write
 jobs:
   test:
     outputs:
@@ -41,7 +45,6 @@ jobs:
         continue-on-error: true
       - uses: cloudbees-io/configure-oci-credentials@v1
         name: Configure container registry credentials
-        continue-on-error: true
         id: dockerconfig
         with:
           registry: https://index.docker.io/v1/
